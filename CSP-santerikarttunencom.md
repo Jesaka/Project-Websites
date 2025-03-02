@@ -68,6 +68,52 @@ Ja skannasin sivun uudelleen https://developer.mozilla.org/en-US/observatory kau
 
 Lopuksi kävin vielä poistamassa turhan .htacces tiedoston sivun kansioista komennolla `rm "laita tähän tiedostopolku"` varmistin että tiedosto oli poistunut komennolla `ls -la "laita tähän tiedostopolku"` .htaccess ei vaikuta sivun toimintaan koska asetukset on määritelty aikaisemmin mainitussa sivun konfiguraatio tiedostossa. Otin myös aikaisemmin tekemäni .conf tiedoston pois päältä komennolla `sudo a2dissite santerikarttunen.com.conf` jolloin pelkkä santerikarttunen.com-le-ssl.conf jäi päälle.
 
+### Päivitys 2.3.2025 Sivun linkit eivät toimi päivityksien jälkeen
+
+Sivua testatessani huomasin etteivät linkit ulkoisille sivuille toimi enään (Linkedin, Instagram, Github).
+
+- Ongelma
+Luultavasti CSP (Content Security Policy) -määritys estää linkkien avautumisen, koska olin määrittänyt säännön:
+
+Header always set Content-Security-Policy "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self'; font-src 'self'; object-src 'none';"
+
+Tässä kaikki resurssit sallitaan vain omasta verkkotunnuksestasi ('self'), mutta ulkoiset palvelut, kuten GitHub, LinkedIn ja Instagram, eivät ole mukana.
+
+- Ratkaisu
+Sinun täytyy sallia nämä ulkoiset sivustot connect-src- tai frame-src-direktiiveissä (jos linkit avautuvat iframeina). Muokkasin CSP-otsikkoa näin:
+
+Header always set Content-Security-Policy "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self'; font-src 'self'; object-src 'none'; connect-src 'self' github.com linkedin.com instagram.com;"
+
+Tämän lisäksi muutin HTML tiedostosta nappien linkit muodosta: 
+
+<div class="content-container">
+  <aside>
+    <h3>Links</h3>
+    <button onclick="window.location.href='https://www.linkedin.com/in/santeri-karttunen-b19878311/?originalSubdomain=fi'">LinkedIn</button>
+    <button onclick="window.location.href='https://github.com/Jesaka'">GitHub</button>
+    <button onclick="window.location.href='https://www.instagram.com/karttusanteri/'">Instagram</button>
+    <a href="mailto:santerikarttunen@outlook.com"><button>santerikarttunen@outlook.com</button></a>
+  </aside>
+
+Muotoon
+
+<h3>Links</h3>
+ <a href="https://www.linkedin.com/in/santeri-karttunen-b19878311/?originalSubdomain=fi" target="_blank">
+     <button>LinkedIn</button>
+ </a>
+ <a href="https://github.com/Jesaka" target="_blank">
+     <button>GitHub</button>
+ </a>
+ <a href="https://www.instagram.com/karttusanteri/" target="_blank">
+     <button>Instagram</button>
+ </a>
+ <a href="mailto:santerikarttunen@outlook.com">
+     <button>santerikarttunen@outlook.com</button>
+ </a>
+
+ Nyt sivun linkit toimivat määritellyille ulkopuolisille sivuille ja parannuksena sivun käytettävyyteen linkit aukaisevat uuden välilehden.
+
+ ### Päivitetty osio 2.3.2025 Päättyy
 
 
 
