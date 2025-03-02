@@ -31,13 +31,13 @@ Header set Content-Security-Policy "default-src 'self'; script-src 'self'; style
 
 Tämän jälkeen kysyin vielä, onko tiedostoon tarpeellista lisätä muita tietoturvaa parantavia asetuksia ja sain seuraavat ehdotukset.
 
-- 1. HTTP Strict Transport Security (HSTS)
+- HTTP Strict Transport Security (HSTS)
 Varmistaa, että verkkosivustosi toimii vain HTTPS-yhteyden kautta.
-- 2. X-Frame-Options (Clickjackingin esto)
+- X-Frame-Options (Clickjackingin esto)
 Estää sivuston upottamisen iframe-elementtiin, mikä suojaa "clickjacking"-hyökkäyksiltä.
-- 3. X-Content-Type-Options (MIME-sniffing esto)
+- X-Content-Type-Options (MIME-sniffing esto)
 Estää selaimia arvaamasta tiedostotyyppiä, mikä voi estää tiettyjä hyökkäyksiä.
-- 4. 4. Referrer Policy (Tietovuotojen esto)
+- Referrer Policy (Tietovuotojen esto)
 Määrittää, miten selaimen tulisi lähettää Referer-otsikkoa muille sivustoille.
 
 Lisäykset kuulostivat fiksuila, joten lisäsin ne tiedostoon, loppulinen asetustiedosto näyttää tältä
