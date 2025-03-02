@@ -21,6 +21,8 @@ CSP määriteltiin tässä lisäämällä Content-Security-Policy -otsikko palve
 
 https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP
 
+### apaxhe ei lue .htacces tiedostoa ja ratkaisu
+
 Aloitin kirjautumalla palvelimelleni ja loin sivun hakemistopolkuun (samaan mistä index.html löytyy .htaccess tiedoston komennolla `micro .htaccess`. Käytin tiedoston luomisessa apuna ChatGPT:tä joka tarjosi valmiin tiedoston.
 
 <IfModule mod_headers.c>
@@ -42,7 +44,29 @@ Lisäykset kuulostivat fiksuila, joten lisäsin ne tiedostoon, loppulinen asetus
 
 <img width="800" alt="image" src="https://github.com/user-attachments/assets/b8bdd0a9-59cc-498a-9f20-5764538c53cb" />
 
-Tekeminen keskeytetty 11:39 
+Tämän jälkeen testasin `curl -I https://santerikarttunen.com` jonka pitäisi näyttää merkkejä että .htaccess tiedosto luetaan ja ehdot toteutuva. Näyttää kuitenkin siltä ettei .htaccess tiedostoa lueta. Syynä on todennäköisesti se, että AllowOverride on asetettu None palvelimen .conf-tiedostossa. En löytänyt tähän rakaisua, joka ei sisällä apache.conf tiedoston muuttamista, joten muokkasin sivun omaa .conf tiedostoa.
+
+## HUOMIO 
+
+Olen ottanut sertifikaatin sivulle käyttäen certbottia, joka on luonut oman tiedoston, joten conf, joka on käytössä ei ole aikaisemmin itse luomani .conf vaan mallia -le-ssl.conf'.  Tässä vaiheessa tein varmuuskopiot molemmista tiedostoista ennen muutosten tekemistä
+
+Kun muutokset oli tehty sivun konfiguraatio tiedosto näytti tältä
+
+<img width="608" alt="image" src="https://github.com/user-attachments/assets/8ad7c66d-fa4c-4342-841c-e6552ff3c9cb" />
+
+Tämän jälkeen annoin komennon `sudo a2enmod headers` joka ottaa apachelle headerit käyttöön ja potkaisin palvelimen uudelleen käyntiin `sudo systemctl restart apache2`
+
+## Toimivuuden tarkistaminen
+
+Tarkistin että headerit ovat tulleet sivulle komennolla `curl -I https://santerikarttunen.com`
+
+<img width="605" alt="image" src="https://github.com/user-attachments/assets/7a42b22a-c59a-4f51-833e-20866575903d" />
+
+Ja skannasin sivun uudelleen https://developer.mozilla.org/en-US/observatory kautaa.
+
+<img width="609" alt="image" src="https://github.com/user-attachments/assets/3b3ededa-a28c-47db-acb4-e940ed58e8cf" />
+
+Lopuksi kävin vielä poistamassa turhan .htacces tiedoston sivun kansioista komennolla `rm "laita tähän tiedostopolku"` varmistin että tiedosto oli poistunut komennolla `ls -la "laita tähän tiedostopolku"` .htaccess ei vaikuta sivun toimintaan koska asetukset on määritelty aikaisemmin mainitussa sivun konfiguraatio tiedostossa. Otin myös aikaisemmin tekemäni .conf tiedoston pois päältä komennolla `sudo a2dissite santerikarttunen.com.conf` jolloin pelkkä santerikarttunen.com-le-ssl.conf jäi päälle.
 
 
 
@@ -50,3 +74,4 @@ Tekeminen keskeytetty 11:39
 ## Lähteet: 
 
 https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP
+Työn tukena on käytetty ChatGPT4.0 kielimallia
