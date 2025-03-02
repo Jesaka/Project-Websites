@@ -1,4 +1,4 @@
-# Content security policy lisääminen sivustolle santerikarttunen.com 1.3.2025 10:45
+# Content security policy lisääminen sivustolle santerikarttunen.com 2.3.2025
 
 Tässä tekstissä käsitellään sivuston https://santerikarttunen.com sivun tietoturvan parantamista ja CSP lisäämistä sivulle tietoturvan parnatamiseksi. Tavoitellussa loppuasetelmassa sivusto ilmoittaa HTTP observatory tarkastuksessa korkeamman pistemäärän sivun turvallisuudelle.
 
