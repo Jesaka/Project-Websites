@@ -86,30 +86,13 @@ Header always set Content-Security-Policy "default-src 'self'; script-src 'self'
 
 Tämän lisäksi muutin HTML tiedostosta nappien linkit muodosta: 
 
-<div class="content-container">
-  <aside>
-    <h3>Links</h3>
-    <button onclick="window.location.href='https://www.linkedin.com/in/santeri-karttunen-b19878311/?originalSubdomain=fi'">LinkedIn</button>
-    <button onclick="window.location.href='https://github.com/Jesaka'">GitHub</button>
-    <button onclick="window.location.href='https://www.instagram.com/karttusanteri/'">Instagram</button>
-    <a href="mailto:santerikarttunen@outlook.com"><button>santerikarttunen@outlook.com</button></a>
-  </aside>
+<img width="554" alt="image" src="https://github.com/user-attachments/assets/89d44671-9bf1-4864-977f-e55331e5e894" />
+
 
 Muotoon
 
-<h3>Links</h3>
- <a href="https://www.linkedin.com/in/santeri-karttunen-b19878311/?originalSubdomain=fi" target="_blank">
-     <button>LinkedIn</button>
- </a>
- <a href="https://github.com/Jesaka" target="_blank">
-     <button>GitHub</button>
- </a>
- <a href="https://www.instagram.com/karttusanteri/" target="_blank">
-     <button>Instagram</button>
- </a>
- <a href="mailto:santerikarttunen@outlook.com">
-     <button>santerikarttunen@outlook.com</button>
- </a>
+<img width="452" alt="image" src="https://github.com/user-attachments/assets/209dc405-3303-43cf-b87e-6b3c86a2aed0" />
+
 
  Nyt sivun linkit toimivat määritellyille ulkopuolisille sivuille ja parannuksena sivun käytettävyyteen linkit aukaisevat uuden välilehden.
 
