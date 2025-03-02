@@ -5,7 +5,7 @@ Tässä tekstissä käsitellään sivuston https://santerikarttunen.com sivun ti
 ## Content Security Policy (CSP) – Mitä se tarkoittaa?
 
 Content Security Policy (CSP) on HTTP-otsikko, joka auttaa estämään haitallisia hyökkäyksiä, kuten Cross-Site Scripting (XSS) ja data injection -hyökkäyksiä. CSP rajoittaa, mistä lähteistä sivusto saa ladata resursseja (esim. skriptejä, tyylejä, kuvia ja fontteja).
-Ilman CSP:tä haitalliset skriptit voivat suorittaa koodia käyttäjän selaimessa, mikä voi johtaa tietovarkauksiin, käyttöoikeuksien väärinkäyttöön ja muuhun vahingolliseen toimintaan. (CHATGPT prompt: Selitä mikä CSP tässä sivun analyysissa)
+Ilman CSP:tä haitalliset skriptit voivat suorittaa koodia käyttäjän selaimessa, mikä voi johtaa tietovarkauksiin, käyttöoikeuksien väärinkäyttöön ja muuhun vahingolliseen toimintaan. (CHATGPT prompt: Selitä mikä on CSP tässä sivun analyysissa)
 
 ## Lähtötilanne 
 
